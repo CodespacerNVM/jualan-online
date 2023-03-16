@@ -214,4 +214,12 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+    /**
+     * Application Title
+     */
+
+    'display-name' => str(env('APP_NAME'))->words(1, ''),
+
+    'suffix' => 'Shop',
+
 ];
