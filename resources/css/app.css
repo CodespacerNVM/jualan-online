@@ -7,6 +7,7 @@
         @apply bg-gray-50 dark:bg-gray-800;
     }
     button,
+    a,
     [role="button"] {
         -webkit-tap-highlight-color: transparent;
         @apply transition select-none active:scale-95 focus-visible:outline-dashed;

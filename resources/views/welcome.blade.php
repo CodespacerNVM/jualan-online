@@ -12,16 +12,16 @@
             <div class="relative max-w-screen-xl px-4 py-6 mx-auto md:py-14 sm:px-6 lg:flex lg:items-center lg:px-8">
                 <div class="max-w-xl text-center sm:text-left">
                     <h1 class="text-3xl font-extrabold sm:text-5xl">
-                        Hello World
+                        Discover Your Next
 
                         <strong class="block font-extrabold text-rose-700">
-                            Forever Home.
+                            Favorite Thing.
                         </strong>
                     </h1>
 
                     <p class="max-w-lg mt-4 sm:text-xl sm:leading-relaxed">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo
-                        tenetur fuga ducimus numquam ea!
+                        Shop our wide range of products and find exactly what you need with our easy-to-use online
+                        store.
                     </p>
 
                     <div class="flex flex-wrap gap-4 mt-8 text-center">
