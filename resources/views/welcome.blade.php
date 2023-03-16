@@ -4,7 +4,7 @@
 
         {{-- Hero Section --}}
         <section
-            class="relative bg-[url(https://images.unsplash.com/photo-1604014237800-1c9102c219da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80)] bg-cover bg-center bg-no-repeat h-[calc(100vh*0.4)] overflow-hidden">
+            class="relative bg-[url(https://images.unsplash.com/photo-1604014237800-1c9102c219da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80)] bg-cover bg-center bg-no-repeat h-[50vh] overflow-hidden">
             <div
                 class="absolute inset-0 bg-gray-800/50 sm:bg-transparent sm:bg-gradient-to-r sm:from-white/95 dark:sm:from-gray-800/95 sm:to-white/25">
             </div>

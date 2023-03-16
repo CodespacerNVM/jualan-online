@@ -25,3 +25,7 @@ Route::get('/about-us', function () {
         'policy' => Str::markdown(file_get_contents($policyFile)),
     ]);
 });
+
+Route::get('/contact-us', function() {
+    return view ('contact');
+})->name('contact.show');
