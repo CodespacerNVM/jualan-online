@@ -1,14 +1,42 @@
 <header aria-label="Site Header"
     class="sticky top-0 z-10 border-b border-gray-100 shadow bg-gray-800/80 backdrop-blur-sm">
-    <div class="flex items-center justify-between h-16 mx-auto max-w-screen-2xl sm:px-6 lg:px-8">
-        <div class="flex items-center gap-4">
-            <button type="button" class="p-2 lg:hidden">
+    <div class="flex items-center justify-between h-16 mx-auto max-w-screen-2xl sm:px-6 lg:px-8" x-data="{ showDropdown: false }">
+        <div class="relative flex items-center gap-4">
+            <button @click="showDropdown = !showDropdown" type="button" class="p-2 lg:hidden">
                 <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
                 <p class="sr-only">Hamburger Menu</p>
             </button>
+
+            <div x-cloak x-show="showDropdown" x-transition @click.outside="showDropdown = false"
+                class="absolute top-10 left-5">
+                <div class="px-12 py-4 bg-gray-100 rounded dark:bg-gray-700">
+                    <nav aria-label="Site Nav" class="flex flex-col gap-2 font-bold text-gray-400 uppercase text-">
+
+                        <a href="/products"
+                            class="transition duration-300 border-b-4 border-transparent hover:border-current hover:text-red-700">
+                            Products
+                        </a>
+
+                        <a href="/contact"
+                            class="transition duration-300 border-b-4 border-transparent hover:border-current hover:text-red-700">
+                            Contact
+                        </a>
+
+                        <a href="{{ route('about.show') }}"
+                            class="transition duration-300 border-b-4 border-transparent hover:border-current hover:text-red-700">
+                            About
+                        </a>
+
+                        <a href="{{ route('blog.index') }}"
+                            class="transition duration-300 border-b-4 border-transparent hover:border-current hover:text-red-700">
+                            Blog
+                        </a>
+                    </nav>
+                </div>
+            </div>
 
             <a href="{{ route('home') }}" class="flex select-none" draggable="false">
                 <x-application-logo class="block w-auto h-8" />
@@ -18,16 +46,6 @@
         <div class="flex items-center justify-end flex-1 gap-8">
             <nav aria-label="Site Nav"
                 class="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-gray-500">
-                <a href="/about"
-                    class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current transition duration-300 hover:text-red-700">
-                    About
-                </a>
-
-                <a href="/news"
-                    class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current transition duration-300 hover:text-red-700">
-                    News
-                </a>
-
                 <a href="/products"
                     class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current transition duration-300 hover:text-red-700">
                     Products
@@ -36,6 +54,16 @@
                 <a href="/contact"
                     class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current transition duration-300 hover:text-red-700">
                     Contact
+                </a>
+
+                <a href="{{ route('about.show') }}"
+                    class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current transition duration-300 hover:text-red-700">
+                    About
+                </a>
+
+                <a href="{{ route('blog.index') }}"
+                    class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current transition duration-300 hover:text-red-700">
+                    Blog
                 </a>
             </nav>
 

@@ -5,7 +5,7 @@
 
             <ul class="flex justify-start gap-6 mt-8 sm:mt-0 sm:justify-end">
                 <li>
-                    <a href="{{ config('social.facebook') }}" rel="noreferrer" target="_blank"
+                    <a no-rel href="{{ config('social.facebook') }}" rel="noreferrer" target="_blank"
                         class="text-gray-700 transition dark:text-gray-400 hover:brightness-200">
                         <span class="sr-only">Facebook</span>
 
@@ -18,7 +18,7 @@
                 </li>
 
                 <li>
-                    <a href="{{ config('social.instagram') }}" rel="noreferrer" target="_blank"
+                    <a no-rel href="{{ config('social.instagram') }}" rel="noreferrer" target="_blank"
                         class="text-gray-700 transition dark:text-gray-400 hover:brightness-200">
                         <span class="sr-only">Instagram</span>
 
@@ -31,7 +31,7 @@
                 </li>
 
                 <li>
-                    <a href="{{ config('social.twitter') }}" rel="noreferrer" target="_blank"
+                    <a no-rel href="{{ config('social.twitter') }}" rel="noreferrer" target="_blank"
                         class="text-gray-700 transition dark:text-gray-400 hover:brightness-200">
                         <span class="sr-only">Twitter</span>
 
@@ -43,7 +43,7 @@
                 </li>
 
                 <li>
-                    <a href="{{ config('social.github') }}" rel="noreferrer" target="_blank"
+                    <a no-rel href="{{ config('social.github') }}" rel="noreferrer" target="_blank"
                         class="text-gray-700 transition dark:text-gray-400 hover:brightness-200">
                         <span class="sr-only">GitHub</span>
 
@@ -56,7 +56,7 @@
                 </li>
 
                 <li>
-                    <a href="{{ config('social.dribbble') }}" rel="noreferrer" target="_blank"
+                    <a no-rel href="{{ config('social.dribbble') }}" rel="noreferrer" target="_blank"
                         class="text-gray-700 transition dark:text-gray-400 hover:brightness-200">
                         <span class="sr-only">Dribbble</span>
 

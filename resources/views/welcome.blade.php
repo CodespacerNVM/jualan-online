@@ -1,5 +1,6 @@
 <x-guest-layout>
     <x-ui-navbar />
+
     <main>
 
         {{-- Hero Section --}}

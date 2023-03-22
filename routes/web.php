@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Laravel\Jetstream\Jetstream;
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +25,7 @@ Route::get('/about-us', function () {
     return view('policy', [
         'policy' => Str::markdown(file_get_contents($policyFile)),
     ]);
-});
+})->name('about.show');
+
+
+Route::resource('blog', PostController::class);
