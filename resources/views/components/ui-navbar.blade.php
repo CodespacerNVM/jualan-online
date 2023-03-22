@@ -1,5 +1,5 @@
-<header aria-label="Site Header"
-    class="sticky top-0 z-10 border-b border-gray-100 shadow bg-gray-800/80 backdrop-blur-sm">
+<header aria-label="Site Header" <<<<<<< HEAD
+    class="sticky top-0 z-10 border-b border-gray-200 dark:border-gray-100 shadow bg-white/80 200:bg-gray-800/80 backdrop-blur-sm">
     <div class="flex items-center justify-between h-16 mx-auto max-w-screen-2xl sm:px-6 lg:px-8" x-data="{ showDropdown: false }">
         <div class="relative flex items-center gap-4">
             <button @click="showDropdown = !showDropdown" type="button" class="p-2 lg:hidden">
@@ -46,24 +46,24 @@
         <div class="flex items-center justify-end flex-1 gap-8">
             <nav aria-label="Site Nav"
                 class="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-gray-500">
-                <a href="/products"
+                <a href="/about"
                     class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current transition duration-300 hover:text-red-700">
+                    About
+                </a>
+
+                <a href="/news"
+                    class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current transition duration-300 hover:text-red-700">
+                    News
+                </a>
+
+                <a href="/products"
+                    class="block h-16 border-b-4 {{ request()->routeIs('contact.show') ? 'border-current text-red-700' : 'border-transparent' }} leading-[4rem] hover:border-current transition duration-300 hover:text-red-700">
                     Products
                 </a>
 
                 <a href="/contact"
                     class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current transition duration-300 hover:text-red-700">
                     Contact
-                </a>
-
-                <a href="{{ route('about.show') }}"
-                    class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current transition duration-300 hover:text-red-700">
-                    About
-                </a>
-
-                <a href="{{ route('blog.index') }}"
-                    class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current transition duration-300 hover:text-red-700">
-                    Blog
                 </a>
             </nav>
 

@@ -29,3 +29,7 @@ Route::get('/about-us', function () {
 
 
 Route::resource('blog', PostController::class);
+
+Route::get('/contact-us', function () {
+    return view('contact');
+})->name('contact.show');
