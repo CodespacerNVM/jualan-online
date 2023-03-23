@@ -42,7 +42,8 @@
                         </div>
                         <section class="w-full">
                             <x-label for="body" value="body" class="capitalize" />
-                            <x-input element="textarea" name="body" id="body" class="w-full p-2 " />
+                            <x-input element="textarea" name="body" id="body" class="w-full p-2 " x-ref="editor"
+                                x-init="" />
                             @error('body')
                                 <p error>{{ $message }}</p>
                             @enderror
