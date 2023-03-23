@@ -12,6 +12,9 @@ class Post extends Model
 
     protected $guarded = ['id'];
     protected $appends = ['reading_time'];
+    protected $casts = [
+        'tags' => 'json'
+    ];
 
     public function readingTime(): Attribute
     {
@@ -44,12 +47,30 @@ class Post extends Model
     *
     * @returns  string $time Estimated reading time.
     */
-    function getReadTime(string $allcontent, $wpm = 230)
+    public function getReadTime(string $allcontent, $wpm = 230)
     {
         $total_word = str_word_count(strip_tags($allcontent));
         $m = floor($total_word / $wpm);
         // $s = floor($total_word % $wpm / ($wpm / 60)); # Get remaining sec
         $estimateTime = $m . ' min read';
         return $estimateTime;
+    }
+
+    public function getExcerpt(int $limit = 200, bool $words = false): string
+    {
+        $body = $this->body;
+
+        return
+            strlen($body) > $limit ?
+            ($words
+                ? str($body)->words($limit, '...')
+                : str($body)->limit($limit, '...')
+            ) :
+            $body;
+    }
+
+    public function getBody(): string
+    {
+        return str($this->body)->markdown();
     }
 }

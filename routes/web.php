@@ -28,7 +28,7 @@ Route::get('/about-us', function () {
 })->name('about.show');
 
 
-Route::resource('blog', PostController::class);
+Route::resource('blog', PostController::class)->middleware(['auth']);
 
 Route::get('/contact-us', function () {
     return view('contact');

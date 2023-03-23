@@ -8,8 +8,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
-    <link rel="shortcut icon" href="favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
+    <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
+    <link rel="shortcut icon" href="/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -26,7 +26,8 @@
 </head>
 
 <body>
-    <div class="font-sans antialiased text-gray-900 transition duration-300 dark:text-gray-100" id="container">
+    <div class="font-sans antialiased text-gray-900 transition duration-300 dark:text-gray-100" id="container"
+        x-data="global()" x-init="themeInit()">
         {{ $slot }}
     </div>
 

@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password')
         ]);
 
-        \App\Models\Post::factory(10)->create();
+        \App\Models\Post::factory(1)->create();
 
         $postTitle = sprintf("Hello User, Welcome to %s!", config('app.name'));
         \App\Models\Post::create([

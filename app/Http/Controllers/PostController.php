@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -22,7 +23,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -30,7 +31,19 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required|min:5|max:200',
+            'body' => 'required|min:10',
+            'tags' => 'string'
+        ]);
+
+        $data['slug'] = time() . '-' . str($data['title'])->slug();
+        $data['tags'] = [...explode(',', $data['tags']) ?? []];
+        $data['user_id'] = Auth::user()->id;
+
+        Post::create($data);
+
+        return redirect()->route('blog.index');
     }
 
     /**
@@ -65,6 +78,7 @@ class PostController extends Controller
      */
     public function destroy(Post $blog)
     {
-        //
+        $blog->delete();
+        return redirect()->route('blog.index');
     }
 }

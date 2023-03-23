@@ -1,6 +1,6 @@
 import "/ckeditor/ckeditor.js";
 
-ClassicEditor.create(document.querySelector(".editor"), {
+ClassicEditor.create(document.querySelector("#ckeditor"), {
     licenseKey: "",
 })
     .then((editor) => {

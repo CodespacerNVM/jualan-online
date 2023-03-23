@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer components {
+    pre,
+    code {
+        @apply bg-[#282c34] !important;
+    }
     body {
         @apply bg-gray-50 dark:bg-gray-800;
     }
@@ -28,8 +32,20 @@
     .tw-container {
         @apply max-w-screen-xl px-4 py-10 mx-auto sm:px-6 sm:py-20 lg:px-8;
     }
+
+    .chip {
+        @apply inline-block px-3 py-1 capitalize text-sm rounded-full;
+    }
+
+    .ck-editor {
+        @apply text-black dark:text-white !important;
+    }
 }
 
 [no-highlight] {
     -webkit-tap-highlight-color: transparent;
+}
+
+[x-cloak] {
+    display: none !important;
 }
