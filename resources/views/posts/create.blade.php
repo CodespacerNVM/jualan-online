@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout :noSmoothScroll="true">
 
     @push('head')
         <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" />
@@ -13,66 +13,51 @@
 
         @include('posts.partials.responsive-nav')
 
-        <div>
-            <div class="container mx-auto">
-                <div class="pb-16 lg:pb-20">
+        <div class="container mx-auto">
 
-                    <x-breadcrumbs home="/blog" />
+            <div class="pb-16 lg:pb-20">
 
-                    <article aria-label="Posts section" class="pt-8 text-center lg:pt-12" x-data="{ body: '' }">
-                        <form action="{{ route('blog.store') }}" method="POST"
-                            class="pb-8 border-b border-grey-lighter">
-                            @csrf
-                            <div class="mb-3">
-                                <x-label for="title">Title</x-label>
-                                <x-input type="text" id="title" name="title" />
+                <x-breadcrumbs home="/blog" />
+
+                <article aria-label="Posts section" class="pt-8 lg:pt-12" x-data="{ body: '' }">
+
+
+
+                    <div class="flex flex-col gap-2">
+                        <div class="flex flex-col gap-2 md:flex-row">
+                            <section class="w-full">
+                                <x-label for="title" value="Title" class="capitalize" />
+                                <x-input name="title" id="title" class="w-full p-2" />
                                 @error('title')
-                                    <p class="text-red-500">{{ $message }}</p>
+                                    <p error>{{ $message }}</p>
                                 @enderror
-                            </div>
-
-                            <p class="text-sm font-light">Posted by: {{ Auth::user()->name }}</p>
-                            <div class="flex items-center justify-center pt-4 text-gray-500">
-                                <p class="pr-2 font-light font-body"
-                                    x-text="new Date('{{ now() }}').toLocaleDateString()"></p>
-                                <span class="font-body text-grey ">//</span>
-                                <p class="pl-2 font-light font-body"
-                                    x-text="`${Math.ceil(body?.length / 230)} min read`">
-                                    Getting Estimated Time...
-                                </p>
-                            </div>
-
-                            <div class="my-12">
-                                <textarea name="body" x-init="ClassicEditor
-                                    .create($refs.editor)
-                                    .then(editor => {
-                                        editor.model.document.on('change:data', () => {
-                                            body = editor.getData()
-                                        })
-                                    })
-                                    .catch(error => {
-                                        console.error(error);
-                                    });" x-ref="editor">
-                                </textarea>
-                                @error('body')
-                                    <p class="text-red-500">{{ $message }}</p>
+                            </section>
+                            <section class="w-full">
+                                <x-label for="slug" value="slug" class="capitalize" />
+                                <x-input name="slug" id="slug" class="w-full p-2 " />
+                                @error('slug')
+                                    <p error>{{ $message }}</p>
                                 @enderror
-                            </div>
+                            </section>
+                        </div>
+                        <section class="w-full">
+                            <x-label for="body" value="body" class="capitalize" />
+                            <x-input element="textarea" name="body" id="body" class="w-full p-2 " />
+                            @error('body')
+                                <p error>{{ $message }}</p>
+                            @enderror
+                        </section>
+                        <section class="w-full">
+                            <x-label for="tags" value="tags" class="capitalize" />
+                            <x-input name="tags" id="tags" class="w-full p-2 " />
+                            @error('tags')
+                                <p error>{{ $message }}</p>
+                            @enderror
+                        </section>
+                    </div>
 
-                            <div class="mb-3">
-                                <x-label for="tags">Tags</x-label>
-                                <x-input id="tags" type="text" name="tags" placeholder="tags" />
-                                @error('tags')
-                                    <p class="text-red-500">{{ $message }}</p>
-                                @enderror
-                            </div>
 
-                            <div class="grid my-12">
-                                <x-button>Save</x-button>
-                            </div>
-                        </form>
-                    </article>
-                </div>
+                </article>
             </div>
         </div>
 

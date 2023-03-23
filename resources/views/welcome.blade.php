@@ -1,4 +1,9 @@
 <x-guest-layout>
+
+    @push('head')
+        <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" />
+    @endpush
+
     <x-ui-navbar />
 
     <main>

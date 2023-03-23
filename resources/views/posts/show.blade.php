@@ -30,9 +30,9 @@
 
                     <x-breadcrumbs home="/blog" />
 
-                    <article aria-label="Posts section" class="pt-8 text-center lg:pt-12">
+                    <article aria-label="Posts section" class="pt-8 lg:pt-12">
                         <div class="pb-8 border-b border-grey-lighter">
-                            <h1 class="flex items-center gap-4 md:flex-row flex-col justify-center">
+                            <h1 class="flex flex-col items-center gap-4 text-center md:flex-row">
                                 <a href="{{ route('blog.show', $post->slug) }}"
                                     class="block text-2xl font-semibold transition-colors md:text-3xl font-body text-primary hover:text-green dark:text-white dark:hover:text-secondary">
                                     {{ $post->title }}
@@ -60,7 +60,7 @@
 
                             </h1>
 
-                            <p class="text-sm font-light">Posted by: {{ $post->user->name }}</p>
+                            <p class="text-sm font-light text-center">Posted by: {{ $post->user->name }}</p>
                             <div class="flex items-center justify-center pt-4 text-gray-500">
                                 <p class="pr-2 font-light font-body"
                                     x-text="new Date('{{ $post->created_at }}').toLocaleDateString()"></p>
@@ -70,10 +70,10 @@
                                 </p>
                             </div>
 
-                            <div class="mx-auto my-6 text-gray-800 prose text-start prose lg:prose-xl dark:text-white">
+                            <div class="mx-auto my-6 prose text-gray-800 text-start lg:prose-xl dark:text-white">
                                 {!! $post->getBody() !!}
                             </div>
-                            <div class="flex items-center flex-wrap justify-center gap-2">
+                            <div class="flex flex-wrap items-center justify-center gap-2">
                                 @foreach ($post->tags as $tag)
                                     <span
                                         class="inline-block px-2 py-1 my-4 text-sm capitalize rounded-full text-yellow-dark bg-yellow-light font-body">{{ $tag }}</span>

@@ -34,11 +34,13 @@ class PostController extends Controller
         $data = $request->validate([
             'title' => 'required|min:5|max:200',
             'body' => 'required|min:10',
-            'tags' => 'string'
+            'tags' => 'array',
+            'tags.*' => 'string'
         ]);
 
         $data['slug'] = time() . '-' . str($data['title'])->slug();
         $data['tags'] = [...explode(',', $data['tags']) ?? []];
+        dd($data['tags'], Gettype($data['tags']));
         $data['user_id'] = Auth::user()->id;
 
         Post::create($data);

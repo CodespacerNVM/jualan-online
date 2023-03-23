@@ -7,6 +7,9 @@
     code {
         @apply bg-[#282c34] !important;
     }
+    [error] {
+        @apply text-sm text-red-500 capitalize;
+    }
     body {
         @apply bg-gray-50 dark:bg-gray-800;
     }
@@ -34,7 +37,7 @@
     }
 
     .chip {
-        @apply inline-block px-3 py-1 capitalize text-sm rounded-full;
+        @apply inline-block px-3 py-1 text-sm capitalize rounded-full;
     }
 
     .ck-editor {

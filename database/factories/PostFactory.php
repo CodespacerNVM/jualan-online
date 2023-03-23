@@ -22,7 +22,7 @@ class PostFactory extends Factory
             'title' => str($title)->title(),
             'slug' => str($title)->slug(),
             'body' => $this->faker->paragraphs(mt_rand(50, 200), true),
-            'tags' => json_encode($this->faker->words())
+            'tags' => '["asd", "asd"]'
         ];
     }
 }
