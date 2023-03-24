@@ -1,5 +1,5 @@
-<svg viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg"
-    class="w-10 stroke-black/90 dark:stroke-white/90" transform="rotate(0)matrix(1, 0, 0, 1, 0, 0)">
+<svg viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-10 stroke-current"
+    transform="rotate(0)matrix(1, 0, 0, 1, 0, 0)">
     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC"
         stroke-width="0.9600000000000002"></g>

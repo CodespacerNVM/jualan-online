@@ -104,8 +104,8 @@
                         <x-slot name="content">
                             <nav aria-label="Main Nav" class="flex flex-col p-2 space-y-1">
                                 <a @click="themeSwitch()" role="button"
-                                    class="flex items-center gap-2 px-4 py-2 text-gray-700 bg-gray-100 rounded-lg dark:text-gray-50 dark:bg-gray-800">
-                                    <i class="text-xl transition-all duration-1000 cursor-pointer bx text-primary dark:text-white "
+                                    class="flex items-center gap-2 px-4 py-2 text-gray-500 rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-50 hover:text-gray-700">
+                                    <i class="text-xl transition-all duration-1000 cursor-pointer bx"
                                         :class="isDarkMode ? 'bxs-sun' : 'bxs-moon'"></i>
 
                                     <span class="text-sm font-medium"> Theme </span>
@@ -149,7 +149,7 @@
                                             d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                     </svg>
 
-                                    <span class="text-sm font-medium"> Account </span>
+                                    <span class="text-sm font-medium"> Profile </span>
                                 </a>
                             </nav>
 

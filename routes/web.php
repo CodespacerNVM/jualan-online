@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use Laravel\Jetstream\Jetstream;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +29,8 @@ Route::get('/about-us', function () {
 })->name('about.show');
 
 
-Route::resource('blog', PostController::class)->middleware(['auth']);
+Route::resource('blog/categories', CategoryController::class);
+Route::resource('blog', PostController::class);
 
 Route::get('/contact-us', function () {
     return view('contact');

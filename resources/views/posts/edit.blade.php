@@ -19,9 +19,10 @@
 
                 <x-breadcrumbs home="/blog" />
 
-                <form aria-label="Posts section" class="pt-8 lg:pt-12" action="{{ route('blog.store') }}" method="POST"
-                    x-data="{ title: '{{ old('title') }}' }">
+                <form aria-label="Posts section" class="pt-8 lg:pt-12" action="{{ route('blog.update', $post->slug) }}"
+                    method="POST" x-data="{ title: '{{ old('title', $post->title) }}' }">
                     @csrf
+                    @method('PUT')
 
 
                     <div class="flex flex-col gap-2">
@@ -34,9 +35,11 @@
                                 @enderror
                             </section>
                             <section class="w-full">
+                                <input type="hidden" x-ref="getSlug" x-slug="title">
                                 <x-label for="slug" value="slug" class="capitalize" />
-                                <x-input name="slug" id="slug" class="w-full p-2 " value="{{ old('slug') }}"
-                                    x-slug="title" />
+                                <x-input name="slug" id="slug" class="w-full p-2 " :value="old('slug', $post->slug)"
+                                    placeholder="Double click to genereate slug"
+                                    @dblclick="$el.value = $refs.getSlug.value" />
                                 @error('slug')
                                     <p error>{{ $message }}</p>
                                 @enderror
@@ -54,7 +57,7 @@
                                     );
                                     console.warn('Build id: jsxvfll26yf-sxy9feyqlss9');
                                     console.error(error);
-                                })">{{ old('body') }}</textarea>
+                                })">{{ old('body', $post->body) }}</textarea>
                             </div>
                             @error('body')
                                 <p error>{{ $message }}</p>
@@ -63,7 +66,10 @@
                         <section class="w-full">
                             <x-label for="categories" value="categories" class="capitalize" />
                             <x-alpine-multi-select elementId="categories" elementName="categories" :optionsData="$categories->map(fn($cat) => ['key' => $cat->id, 'value' => $cat->name])"
-                                :selected="explode(',', old('categories'))" placeholder="Select Categories" />
+                                :selected="explode(
+                                    ',',
+                                    old('categories', implode(',', $post->categories->pluck('id')->toArray())),
+                                )" placeholder="Select Categories" />
                             @error('categories')
                                 <p error>{{ $message }}</p>
                             @enderror

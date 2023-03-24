@@ -3,8 +3,26 @@
 @tailwind utilities;
 
 @layer components {
+    label[required]::after {
+        content: "*";
+        color: red;
+    }
+
+    select {
+        cursor: pointer;
+        @apply dark:text-gray-900;
+    }
+
+    input:not(:disabled) {
+        @apply dark:bg-gray-900;
+    }
+
+    kbd {
+        @apply inline-flex items-center border border-gray-200 rounded px-2 text-sm font-sans font-medium text-gray-400 whitespace-nowrap;
+    }
+
     pre,
-    code {
+    code span {
         @apply bg-[#282c34] !important;
     }
     [error] {

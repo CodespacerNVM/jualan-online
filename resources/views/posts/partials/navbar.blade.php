@@ -28,14 +28,14 @@
                     </a>
                 </li>
 
-
                 <li class="relative mb-1 mr-6 group">
-                    <a href="{{ route('blog.index') }}"
+                    <a href="{{ route('categories.index') }}"
                         class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current font-semibold hover:text-red-700">
-                        Blog
+                        Categories
                     </a>
 
                 </li>
+
                 <li class="relative mb-1 mr-6 group">
                     <a href="{{ route('about.show') }}"
                         class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current font-semibold hover:text-red-700">
@@ -44,7 +44,7 @@
                 </li>
 
                 <li class="relative mb-1 mr-6 group">
-                    <a href="javascript:void(0)"
+                    <a href="{{ route('blog.index') }}"
                         class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current font-semibold hover:text-red-700">
                         Search
                     </a>

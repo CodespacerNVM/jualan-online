@@ -3,18 +3,23 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Post extends Model
 {
     use HasFactory;
+    use Sluggable;
 
     protected $guarded = ['id'];
     protected $appends = ['reading_time'];
     protected $cats = [
         'tags' => 'array'
     ];
+    protected $with = ['categories', 'user'];
 
     public function readingTime(): Attribute
     {
@@ -23,9 +28,14 @@ class Post extends Model
         );
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(\App\Models\User::class);
+    }
+
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(\App\Models\Post\Category::class, 'post_category');
     }
 
     public function getRouteKeyName()
@@ -58,19 +68,62 @@ class Post extends Model
 
     public function getExcerpt(int $limit = 200, bool $words = false): string
     {
-        $body = $this->body;
+        $body = strip_tags($this->getBody());
 
-        return
-            strlen($body) > $limit ?
+        return (strlen($body) > $limit ?
             ($words
                 ? str($body)->words($limit, '...')
                 : str($body)->limit($limit, '...')
             ) :
-            $body;
+            $body
+        );
     }
 
     public function getBody(): string
     {
         return str($this->body)->markdown();
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            $searchTerm = '%' . strtolower($search) . '%';
+            return $query->whereRaw('LOWER(title) LIKE ?', [$searchTerm])
+                ->orWhereRaw('LOWER(body) LIKE ?', [$searchTerm]);
+        });
+
+        $query->when($filters['categories'] ?? false, function ($query, $categories) {
+            $categories = explode(',', $categories);
+            return $query->whereHas('categories', function ($query) use ($categories) {
+                $query->whereIn('slug', $categories);
+            }, '=', count($categories));
+        });
+
+        $query->when($filters['sortBy'] ?? false, function ($query, $sortBy) {
+            $sortOptions = [
+                'latest' => ['created_at', 'asc'],
+                'oldest' => ['created_at', 'desc'],
+                'a-z' => ['title', 'asc'],
+                'z-a' => ['title', 'desc'],
+            ];
+
+            $sort_by = $sortOptions[$sortBy] ?? ['created_at', 'asc'];
+
+            return $query->orderBy(...$sort_by);
+        });
     }
 }

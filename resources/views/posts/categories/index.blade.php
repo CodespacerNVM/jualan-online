@@ -1,4 +1,5 @@
 <x-guest-layout>
+
     @push('head')
         <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" />
     @endpush
@@ -7,6 +8,7 @@
         @include('posts.partials.navbar')
 
         @include('posts.partials.responsive-nav')
+
 
 
         <div>
@@ -34,7 +36,7 @@
                         </p>
                     </div>
 
-                    <form>
+                    <form action="{{ route('blog.index') }}">
                         <div class="flex flex-col items-center gap-2 pt-3 sm:flex-row relative" x-data="{ onSearch: $refs.searchInput.value }"
                             x-init="(() => {
                                 window.onkeydown = ({ key, ctrlKey }) => {
@@ -42,7 +44,7 @@
                                     else if (key === 'Escape') $refs.searchInput.blur();
                                 }
                             })()">
-                            <x-input autocomplete="off" name="search" type="search" class="w-full px-4 py-3" autofocus
+                            <x-input name="search" type="search" class="w-full px-4 py-3"
                                 @focus="val = $el.value; $el.value = ''; $el.value = val"
                                 value="{{ request('search') }}" x-ref="searchInput" @input="onSearch = $el.value" />
                             <x-secondary-button class="flex items-center justify-center gap-2">
@@ -109,55 +111,26 @@
                             </div>
                         </div>
                     </form>
+
                     <section aria-label="Posts section" class="pt-8 lg:pt-12">
                         <div class="py-2">
                             <x-breadcrumbs home="/blog" />
-                            @if (request('banner'))
-                                <x-banner />
-                            @endif
                         </div>
-                        @forelse ($posts as $post)
-                            <article class="py-8 border-b border-grey-lighter">
-                                @forelse ($post->categories as $cat)
-                                    <span
-                                        class="inline-block px-2 py-1 mb-4 text-sm capitalize rounded-full text-yellow-dark bg-yellow-light font-body">{{ $cat->name }}</span>
-                                @empty
-                                    <span
-                                        class="inline-block px-2 py-1 mb-4 text-sm capitalize rounded-full text-yellow-dark bg-yellow-light font-body">
-                                        @production
-                                            Uncategorized!
-                                        @else
-                                            No Category
-                                        @endproduction
-                                    </span>
-                                @endforelse
-                                <h4>
-                                    <a href="{{ route('blog.show', $post->slug) }}"
-                                        class="block text-lg font-semibold transition-colors font-body text-primary hover:text-green dark:text-white dark:hover:text-secondary">
-                                        {{ $post->title }}
-                                    </a>
-                                </h4>
-                                <p class="text-gray-600 dark:text-gray-400">
-                                    {{ $post->getExcerpt(30, true) }}
-                                </p>
-                                <div class="flex items-center pt-4 text-gray-500">
-                                    <p class="pr-2 font-light font-body"
-                                        x-text="new Date('{{ $post->created_at }}').toLocaleDateString()"></p>
-                                    <span class="font-body text-grey ">//</span>
-                                    <p class="pl-2 font-light font-body">
-                                        {{ $post->reading_time }}
-                                    </p>
+                        <h2 class="font-medium text-lg leading-tight py-4">Category List</h2>
+                        <div class="flex flex-wrap gap-4 max-w-full w-3/4">
+                            @forelse ($categories as $cat)
+                                <a role="button" href="{{ route('blog.index') }}?categories={{ $cat->slug }}"
+                                    class="chip bg-yellow-light text-yellow-dark">
+                                    {{ $cat->name }} ({{ $cat->posts->count() }})
+                                </a>
+                            @empty
+                                <div>
+                                    <p class="text-lg text-gray-500">There's no category to show.</p><a href="/"
+                                        class="text-sm transition hover:text-rose-700">Back to home</a>
                                 </div>
-                            </article>
-                        @empty
-                            <div>
-                                <p class="text-lg text-gray-500">No posts to show.</p><a href="/"
-                                    class="text-sm transition hover:text-rose-700">Back to home</a>
-                            </div>
-                        @endforelse
+                            @endforelse
+                        </div>
                     </section>
-
-                    {{ $posts->links('layouts.pagination') }}
                 </div>
             </div>
         </div>
