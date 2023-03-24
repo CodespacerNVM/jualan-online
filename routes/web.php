@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
 use Laravel\Jetstream\Jetstream;
 use Illuminate\Support\Facades\Route;
 
@@ -24,8 +26,12 @@ Route::get('/about-us', function () {
     return view('policy', [
         'policy' => Str::markdown(file_get_contents($policyFile)),
     ]);
-});
+})->name('about.show');
 
-Route::get('/contact-us', function() {
-    return view ('contact');
+
+Route::resource('blog/categories', CategoryController::class);
+Route::resource('blog', PostController::class);
+
+Route::get('/contact-us', function () {
+    return view('contact');
 })->name('contact.show');
